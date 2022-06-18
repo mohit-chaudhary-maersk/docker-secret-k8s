@@ -32,3 +32,9 @@ jobs:
         with:
           # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
           maven-version: 3.8.2
+          
+      - name: Build with maven
+        run: mvn clean install
+        
+      - name: Docker build
+        run: docker build -t stridemaker/docker-secret-k8s'${{github.sha}}' .
