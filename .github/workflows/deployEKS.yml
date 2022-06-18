@@ -37,13 +37,13 @@ jobs:
         run: mvn clean install
         
       - name: Docker build
-        run: docker build -t docker-secret-k8s_'${{github.sha}}' .
+        run: docker build -t docker-secret-k8s'${{github.sha}}' .
         
       - name: Docker Login
         run: docker login --username '${{secrets.DOCKER_LOGIN}}' --password '${{secrets.DOCKER_PASSWORD}}'
         
       - name: Docker Image tag
-        run: docker tag docker-secret-k8s_'${{github.sha}}' '${{secrets.DOCKER_LOGIN}}'/docker-secret-k8s_'${{github.sha}}'
+        run: docker tag docker-secret-k8s'${{github.sha}}' '${{secrets.DOCKER_LOGIN}}'/docker-secret-k8s'${{github.sha}}'
         
       - name: Push Docker image
         run: docker push '${{secrets.DOCKER_LOGIN}}'/docker-secret-k8s_'${{github.sha}}'
