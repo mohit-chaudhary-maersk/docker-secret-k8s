@@ -51,7 +51,7 @@ jobs:
       - uses: azure/CLI@v1
         with:
           azcliversion: 2.30.0
-          run: az version
+          run: azcliversion
       
       - name: Azure Kubernetes set context
         uses: Azure/aks-set-context@v2.2
