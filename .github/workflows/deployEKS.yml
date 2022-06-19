@@ -75,12 +75,6 @@ jobs:
           allow-no-subscriptions: true
           # Provide audience field for access-token. Default value is api://AzureADTokenExchange
           audience: api://AzureADTokenExchange
-      
-      - name: Azure Login
-        uses: Azure/login@v1
-        with:
-          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-          creds: '${{secrets.AZURE_CREDENTIALS}}'
 
       - name: Azure Kubernetes set context
         uses: Azure/aks-set-context@v2.2
