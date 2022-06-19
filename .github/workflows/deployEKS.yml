@@ -49,16 +49,13 @@ jobs:
         run: docker push '${{secrets.DOCKER_LOGIN}}'/docker-secret-k8s'${{github.sha}}'
         
       - name: Azure Login
-        uses: Azure/login@v1.4.4
+        uses: Azure/login@v1.4.0
         with:
-          # ClientId of the Azure Service principal created.
-          client-id: 525c840e-761f-4e06-aca6-cf4a623c8852
-          # TenantId of the Azure Service principal created.
-          tenant-id: d2a2da7c-0eba-4c15-92c0-a1a782221b05
-          # Azure subscriptionId
-          subscription-id:  44db8608-ff65-4582-82b7-f45104fbf1e8
+          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
+          creds: '${{secrets.AZURE_CREDENTIALS}}'
+          # Set this value to true to enable Azure PowerShell Login in addition to Az CLI login
+          enable-AzPSSession: true
 
-        
       - name: Azure Kubernetes set context
         uses: Azure/aks-set-context@v2.2
         with:
