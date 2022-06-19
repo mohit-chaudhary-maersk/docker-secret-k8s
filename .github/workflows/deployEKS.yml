@@ -48,6 +48,14 @@ jobs:
       - name: Push Docker image
         run: docker push '${{secrets.DOCKER_LOGIN}}'/docker-secret-k8s'${{github.sha}}'
       
+      - name: Azure CLI Action
+        uses: Azure/cli@v1
+        with:
+          # Specify the script here
+          inlineScript: az --version
+          # Azure CLI version to be used to execute the script. If not provided, latest version is used
+          azcliversion: 2.37.0
+      
       - name: Azure Login
         uses: Azure/login@v1.4.4
         with:
