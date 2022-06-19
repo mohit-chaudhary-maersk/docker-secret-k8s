@@ -48,12 +48,9 @@ jobs:
       - name: Push Docker image
         run: docker push '${{secrets.DOCKER_LOGIN}}'/docker-secret-k8s'${{github.sha}}'
       
-      - name: Azure login
-        uses: azure/login@v1.4.3
+      - uses: azure/login@v1
         with:
-          client-id: '${{ secrets.AZURE_CLIENT_ID }}'
-          tenant-id: '${{ secrets.AZURE_TENANT_ID }}'
-          subscription-id: '${{ secrets.AZURE_SUBSCRIPTION_ID }}'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
       
       - name: Azure Kubernetes set context
         uses: Azure/aks-set-context@v2.2
