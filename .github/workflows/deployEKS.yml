@@ -48,6 +48,9 @@ jobs:
       - name: Push Docker image
         run: docker push '${{secrets.DOCKER_LOGIN}}'/docker-secret-k8s'${{github.sha}}'
       
+      - name: Azure login
+        run: az login
+      
       - name: Azure Kubernetes set context
         uses: Azure/aks-set-context@v2.2
         with:
